@@ -7,3 +7,5 @@ wordpress-php5.6/*
 wordpress-php7.0/*
 wordpress-php7.4/*
 wordpress-php8.2/*
+
+!*/.gitkeep
