@@ -1,4 +1,4 @@
-version: '3.3'
+version: '3.7'
 
 services:
   # WordPress with PHP 5.6
@@ -6,6 +6,11 @@ services:
     image: wordpress:php5.6
     ports:
       - "8051:80"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'   # Limits the container to use 0.5 CPU core
+          memory: '512M' # Limits the container to use 512MB of memory
     volumes:
       - ./wordpress-php5.6:/var/www/html
     environment:
@@ -21,6 +26,11 @@ services:
     image: wordpress:php7.0
     ports:
       - "8052:80"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'   # Limits the container to use 0.5 CPU core
+          memory: '512M' # Limits the container to use 512MB of memory
     volumes:
       - ./wordpress-php7.0:/var/www/html
     environment:
@@ -36,6 +46,11 @@ services:
     image: wordpress:php7.4
     ports:
       - "8053:80"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'   # Limits the container to use 0.5 CPU core
+          memory: '512M' # Limits the container to use 512MB of memory
     volumes:
       - ./wordpress-php7.4:/var/www/html
     environment:
@@ -51,6 +66,11 @@ services:
     image: wordpress:php8.2
     ports:
       - "8054:80"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'   # Limits the container to use 0.5 CPU core
+          memory: '512M' # Limits the container to use 512MB of memory
     volumes:
       - ./wordpress-php8.2:/var/www/html
     environment:
