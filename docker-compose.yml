@@ -1,5 +1,3 @@
-version: '3.7'
-
 services:
   # WordPress with PHP 5.6
   wordpress-php5.6:
@@ -14,12 +12,12 @@ services:
     volumes:
       - ./wordpress-php5.6:/var/www/html
     environment:
-      WORDPRESS_DB_HOST: db-php5.6
+      WORDPRESS_DB_HOST: db-all
       WORDPRESS_DB_NAME: wordpress56
       WORDPRESS_DB_USER: root
       WORDPRESS_DB_PASSWORD: password
     depends_on:
-      - db-php5.6
+      - db-all
 
   # WordPress with PHP 7.0
   wordpress-php7.0:
@@ -34,12 +32,12 @@ services:
     volumes:
       - ./wordpress-php7.0:/var/www/html
     environment:
-      WORDPRESS_DB_HOST: db-php7.0
+      WORDPRESS_DB_HOST: db-all
       WORDPRESS_DB_NAME: wordpress70
       WORDPRESS_DB_USER: root
       WORDPRESS_DB_PASSWORD: password
     depends_on:
-      - db-php7.0
+      - db-all
 
   # WordPress with PHP 7.4
   wordpress-php7.4:
@@ -54,12 +52,12 @@ services:
     volumes:
       - ./wordpress-php7.4:/var/www/html
     environment:
-      WORDPRESS_DB_HOST: db-php7.4
+      WORDPRESS_DB_HOST: db-all
       WORDPRESS_DB_NAME: wordpress74
       WORDPRESS_DB_USER: root
       WORDPRESS_DB_PASSWORD: password
     depends_on:
-      - db-php7.4
+      - db-all
 
   # WordPress with PHP 8.2
   wordpress-php8.2:
@@ -74,42 +72,19 @@ services:
     volumes:
       - ./wordpress-php8.2:/var/www/html
     environment:
-      WORDPRESS_DB_HOST: db-php8.2
+      WORDPRESS_DB_HOST: db-all
       WORDPRESS_DB_NAME: wordpress82
       WORDPRESS_DB_USER: root
       WORDPRESS_DB_PASSWORD: password
     depends_on:
-      - db-php8.2
+      - db-all
 
-  # MySQL Service for PHP 5.6
-  db-php5.6:
-    image: mysql:5.7
+  # MySQL Service
+  db-all:
+    image: mysql:5.6
     volumes:
-      - ./db-php5.6-data:/var/lib/mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: password
-
-  # MySQL Service for PHP 7.0
-  db-php7.0:
-    image: mysql:5.7
-    volumes:
-      - ./db-php7.0-data:/var/lib/mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: password
-
-  # MySQL Service for PHP 7.4
-  db-php7.4:
-    image: mysql:5.7
-    volumes:
-      - ./db-php7.4-data:/var/lib/mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: password
-
-  # MySQL Service for PHP 8.2
-  db-php8.2:
-    image: mysql:5.7
-    volumes:
-      - ./db-php8.2-data:/var/lib/mysql
+      - ./db-all-data:/var/lib/mysql
+      - ./mysql.cnf:/etc/mysql/my.cnf # Mount custom MySQL config file
     environment:
       MYSQL_ROOT_PASSWORD: password
 
@@ -119,5 +94,5 @@ services:
     ports:
       - "8050:80"
     environment:
-      PMA_HOSTS: "db-php5.6,db-php7.0,db-php7.4,db-php8.2"  # List all MySQL hosts here
+      PMA_HOSTS: "db-all"  # List all MySQL hosts here
       MYSQL_ROOT_PASSWORD: password

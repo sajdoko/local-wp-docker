@@ -3,6 +3,7 @@ db-php5.6-data/*
 db-php7.0-data/*
 db-php7.4-data/*
 db-php8.2-data/*
+db-all-data/*
 wordpress-php5.6/*
 wordpress-php7.0/*
 wordpress-php7.4/*
